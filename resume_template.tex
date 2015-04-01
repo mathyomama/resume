@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+%%%% Dimensions %%%%
+\topmargin=0.0in % length of margin at the top of the page
+\oddsidemargin=0.0in % length of margin on the odd numbered pages
+\evensidemargin=0in % length of margin on the even numbered pages
+\textwidth=7in % How wide you want you text to be
+\marginparwidth=0.5in
+\headheight=0pt % 1 in margins for the top and bottom (1 inch is added to this value by default)
+\headsep=0pt % increase to increase white space in between headers and the top of the page
+\textheight=9.0in % How tall the text body is allowed to be on each page
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Create a table to align all the entry titles with the content
+\begin{tabular}{r l}
+	%%%% CONTACT INFO %%%%
+	& %% NAME %%
+	\LARGE{Michael Duckett} \\
+	& %% Street Address %%
+	2360 Wintergreen Rd. \\
+	& %% City, State zip
+	Tallahassee, FL. 32308 \\
+	& %% email address %%
+	michael.duckett@gmail.com \\
+	& %% phone numbern %%
+	(850) 443-9501 \\
+
+	%%%% EDUCATION %%%%
+	\Large{EDUCATION} % heading on the left
+	&
+	\begin{tabular}{@{} l @{}}
+		\begin{tabular}{@{} l r @{}}
+			\large{University of Florida} & Fall 2009-Spring 2013 \\
+			\large{BS Chemical Engineering} \\
+			Cum Laude (3.61 GPA) \\
+			\multicolumn{2}{l}{
+				Other coursework: Partial Differential Equation, Advanced Calculus I
+				\& II, Linear Algebra
+			}
+		\end{tabular}
+	\end{tabular} \\
+
+	%%%% WORK %%%%
+	{\Huge WORK}
+
+	%%%% EXTRA CURRICULAR %%%%
+	\Large{EXTRA CURRICULAR}
+	&
+	\begin{tabular}{@{} l @{}}
+		% entry 1
+		\begin{tabular}{@{} l r @{}}
+			\large{UF ChemE Car} & 2010-2011 \\
+			\multicolumn{2}{l}{
+				The club created a car which ran off a chemical reaction by design.
+				Our hydrogen fuel cell driven car won 2\textsuperscript{nd} at the
+				2010 National AIChE Conference.
+			}
+		\end{tabular}
+		\begin{tabular}{@{} p
+		% entry 2
+		\begin{tabular}{@{} l r @{}}
+			\large{Lincoln High School Mu Alpha Theta President} & 2007-2009 \\
+			\multicolumn{2}{l}{
+				Mu Alpha Theta is a national math society which holds math competitions.
+				I started back in 7\textsuperscript{th} grade with Algebra I and
+				progressed to Calculus in my junior and senior years of high school.
+			}
+		\end{tabular}
+		% entry 3
+		\begin{tabular}{@{} l r @{}}
+			\large{UF Ultimate Frisbee Club} & 2009-2013 \\
+			\multicolumn{2}{l}{
+				(B team) won "B Team Nationals" in 2011 \\
+				(A team) won "Trouble in Vegas" in 2013
+			}
+		\end{tabular}
+		% entry 4
+		\begin{tabular}{@{} l r @{}}
+			\large{Notable High School Awards} &  \\
+			\multicolumn{2}{l}{
+				Perfect paper on 2006 National Latin Exam (Level II) \\
+				Multiple 1st place awards in Florida Mu Alpha Theta
+			}
+		\end{tabular}	
+	\end{tabular}
+\end{tabular}
+\end{document}
