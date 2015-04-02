@@ -1,4 +1,14 @@
-\documentclass[11pt]{article}
+%%%%%%%%%%%%%%%%%%%%
+% Tabular Resume Template
+% author: Michael Duckett
+%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{anyfontsize}
+\usepackage{array}
+% Fonts
+\usepackage[sfdefault,lf]{carlito}
 
 %%%% Dimensions %%%%
 \topmargin=0.0in % length of margin at the top of the page
@@ -11,79 +21,130 @@
 \textheight=9.0in % How tall the text body is allowed to be on each page
 %%%%%%%%%%%%%%%%%%%%
 
+%%%%% Lengths %%%%%%
+\newcommand{\setnewlength}[2]{\newlength{#1}\setlength{#1}{#2}}
+\setnewlength{\subjectwidth}{1.5in}
+\setnewlength{\entrytitlewidthwithdate}{3.5in}
+\setnewlength{\entrydatewidth}{1.5in}
+\setnewlength{\entrywidth}{5in}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Commands %%%%%
+\newcommand{\makeheader}{
+	\begin{tabular}{@{} l @{}}
+		%% NAME %%
+		{\fontsize{30pt}{36pt}\selectfont \name} \\
+		%% Street Address %%
+		\streetaddress \\
+		%% City, State zip
+		\city \\
+		%% email address %%
+		\email \\
+		%% phone number %%
+		\phonenumber \\
+	\end{tabular}
+}
+\newcommand{\makesubjecttitle}[1]{
+	{\fontsize{20pt}{24pt}\selectfont #1}
+}
+\newcommand{\makeentrywithdate}[3]{
+	\begin{tabular}{@{} p{\entrytitlewidthwithdate} p{\entrydatewidth} @{}}
+		{\fontsize{14pt}{17pt}\selectfont #1} & #2 \\
+		\multicolumn{2}{p{\entrywidth}}{#3}
+	\end{tabular}
+}
+\newcommand{\makeentrywithoutdate}[2]{
+	\begin{tabular}{@{} p{\entrywidth} @{}}
+		{\fontsize{14pt}{17pt}\selectfont #1} \\
+		#2
+	\end{tabular}
+}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%% Fields %%%%%%
+% HEADER
+\newcommand{\name}{Michael Duckett}
+\newcommand{\streetaddress}{2360 Wintergreen Rd.}
+\newcommand{\city}{Tallahassee, FL. 32308}
+\newcommand{\email}{michael.duckett888@gmail.com}
+\newcommand{\phonenumber}{(850) 443-9501}
+% SCHOOL
+\newcommand{\school}{University of Florida \newline BS Chemical Engineering}
+\newcommand{\schoolyears}{Fall 2009-Spring 2013}
+\newcommand{\schooldescription}{
+	Cum Laude (3.61 GPA) \newline
+	Other coursework: Partial Differential Equation, Advanced Calculus I \& II, Linear Algebra
+}
+% XU WORK
+\newcommand{\xuworktitle}{Instrumentation Specialist}
+\newcommand{\xuworkdate}{October 2014-January 2015}
+\newcommand{\xuworkdescription}{Whatever}
+% BBFAA CONCESSIONS
+\newcommand{\conworktitle}{BBFAA FSU Concession Stands}
+\newcommand{\conworkdate}{2013}
+\newcommand{\conworkdescription}{
+	I operated the cash register and cooked the hamburgers and hot dogs at the Big Bend Filipino American Association's 20-person kiosk.
+}
+% UF CHEME CAR
+\newcommand{\carextratitle}{UF ChemE Car}
+\newcommand{\carextradate}{2010-2011}
+\newcommand{\carextradescription}{
+	The club created a car which ran off a chemical reaction by design. Our hydrogen fuel cell driven car won 2\textsuperscript{nd} at the 2010 National AIChE Conference.
+}
+% LINCOLN HIGH SCHOOL MU ALPHA THETA PRESIDENT
+\newcommand{\presextratitle}{Lincoln High School Mu Alpha Theta President}
+\newcommand{\presextradate}{2007-2009}
+\newcommand{\presextradescription}{
+	Mu Alpha Theta is a national math society which holds math competitions. I started back in 7\textsuperscript{th} grade with Algebra I and progressed to Calculus in my junior years of high school.
+}
+% UF ULTIMATE FRISBEE CLUB
+\newcommand{\ultiextratitle}{UF Ultimate Frisbee Club}
+\newcommand{\ultiextradate}{2009-2013}
+\newcommand{\ultiextradescription}{
+		(B team) won "B Team Nationals" in 2011 \newline
+		(A team) won "Trouble in Vegas" in 2013
+}
+% HIGH SCHOOL AWARDS
+\newcommand{\hightitle}{Notable High School Awards}
+\newcommand{\highdescription}{
+		perfect paper on 2006 national latin exam \newline
+		multiple 1\textsuperscript{st} place awards in Florida Mu Alpha Theta
+}
+% COMPUTER SKILLS
+\newcommand{\computerskills}{python (including the Django Web Framework) \\ HTML, CSS \\ C, Java \\ Microsoft Word, Excel, and Powerpoint}
+%%%%%%%%%%%%%%%%%%%%
+
+
+%% BEGIN DOCUMENT %%
 \begin{document}
 
 % Create a table to align all the entry titles with the content
-\begin{tabular}{r l}
+\begin{tabular}{@{} p{\subjectwidth} p{\entrywidth} @{}}
 	%%%% CONTACT INFO %%%%
-	& %% NAME %%
-	\LARGE{Michael Duckett} \\
-	& %% Street Address %%
-	2360 Wintergreen Rd. \\
-	& %% City, State zip
-	Tallahassee, FL. 32308 \\
-	& %% email address %%
-	michael.duckett@gmail.com \\
-	& %% phone numbern %%
-	(850) 443-9501 \\
+	& \makeheader \\
 
 	%%%% EDUCATION %%%%
-	\Large{EDUCATION} % heading on the left
+	\makesubjecttitle{EDUCATION}
 	&
 	\begin{tabular}{@{} l @{}}
-		\begin{tabular}{@{} l r @{}}
-			\large{University of Florida} & Fall 2009-Spring 2013 \\
-			\large{BS Chemical Engineering} \\
-			Cum Laude (3.61 GPA) \\
-			\multicolumn{2}{l}{
-				Other coursework: Partial Differential Equation, Advanced Calculus I
-				\& II, Linear Algebra
-			}
-		\end{tabular}
+		\makeentrywithdate{\school}{\schoolyears}{\schooldescription}
 	\end{tabular} \\
 
 	%%%% WORK %%%%
-	{\Huge WORK}
-
-	%%%% EXTRA CURRICULAR %%%%
-	\Large{EXTRA CURRICULAR}
+	\makesubjecttitle{WORK}
 	&
 	\begin{tabular}{@{} l @{}}
-		% entry 1
-		\begin{tabular}{@{} l r @{}}
-			\large{UF ChemE Car} & 2010-2011 \\
-			\multicolumn{2}{l}{
-				The club created a car which ran off a chemical reaction by design.
-				Our hydrogen fuel cell driven car won 2\textsuperscript{nd} at the
-				2010 National AIChE Conference.
-			}
-		\end{tabular}
-		\begin{tabular}{@{} p
-		% entry 2
-		\begin{tabular}{@{} l r @{}}
-			\large{Lincoln High School Mu Alpha Theta President} & 2007-2009 \\
-			\multicolumn{2}{l}{
-				Mu Alpha Theta is a national math society which holds math competitions.
-				I started back in 7\textsuperscript{th} grade with Algebra I and
-				progressed to Calculus in my junior and senior years of high school.
-			}
-		\end{tabular}
-		% entry 3
-		\begin{tabular}{@{} l r @{}}
-			\large{UF Ultimate Frisbee Club} & 2009-2013 \\
-			\multicolumn{2}{l}{
-				(B team) won "B Team Nationals" in 2011 \\
-				(A team) won "Trouble in Vegas" in 2013
-			}
-		\end{tabular}
-		% entry 4
-		\begin{tabular}{@{} l r @{}}
-			\large{Notable High School Awards} &  \\
-			\multicolumn{2}{l}{
-				Perfect paper on 2006 National Latin Exam (Level II) \\
-				Multiple 1st place awards in Florida Mu Alpha Theta
-			}
-		\end{tabular}	
+		\makeentrywithdate{\xuworktitle}{\xuworkdate}{\xuworkdescription} \\
+		\makeentrywithdate{\conworktitle}{\conworkdate}{\conworkdescription}
+	\end{tabular} \\
+
+	%%%% EXTRA CURRICULAR %%%%
+	\makesubjecttitle{EXTRA CURRICULAR}
+	&
+	\begin{tabular}{@{} l @{}}
+		\makeentrywithdate{\carextratitle}{\carextradate}{\carextradescription} \\
+		\makeentrywithdate{\presextratitle}{\presextradate}{\presextradescription} \\
+		\makeentrywithdate{\ultiextratitle}{\ultiextradate}{\ultiextradescription} \\
 	\end{tabular}
 \end{tabular}
 \end{document}
