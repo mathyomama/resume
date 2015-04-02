@@ -4,14 +4,16 @@
 %%%%%%%%%%%%%%%%%%%%
 
 \documentclass[12pt]{article}
+\usepackage{tabu}
 \usepackage[T1]{fontenc}
 \usepackage{anyfontsize}
 \usepackage{array}
 % Fonts
-\usepackage[sfdefault,lf]{carlito}
+%\usepackage[sfdefault,lf]{carlito}
 
 %%%% Dimensions %%%%
 \topmargin=0.0in % length of margin at the top of the page
+\hoffset=0.0in
 \oddsidemargin=0.0in % length of margin on the odd numbered pages
 \evensidemargin=0in % length of margin on the even numbered pages
 \textwidth=7in % How wide you want you text to be
@@ -23,15 +25,19 @@
 
 %%%%% Lengths %%%%%%
 \newcommand{\setnewlength}[2]{\newlength{#1}\setlength{#1}{#2}}
-\setnewlength{\subjectwidth}{1.5in}
+\setnewlength{\subjectwidth}{1.75in}
 \setnewlength{\entrytitlewidthwithdate}{3.5in}
 \setnewlength{\entrydatewidth}{1.5in}
 \setnewlength{\entrywidth}{5in}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%% Commands %%%%%
+% new column type
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcommand{\makeheader}{
-	\begin{tabular}{@{} l @{}}
+	\begin{tabu*}{@{} l @{}}
 		%% NAME %%
 		{\fontsize{30pt}{36pt}\selectfont \name} \\
 		%% Street Address %%
@@ -42,22 +48,22 @@
 		\email \\
 		%% phone number %%
 		\phonenumber \\
-	\end{tabular}
+	\end{tabu*}
 }
 \newcommand{\makesubjecttitle}[1]{
-	{\fontsize{20pt}{24pt}\selectfont #1}
+	{\fontsize{20pt}{20pt}\selectfont #1}
 }
 \newcommand{\makeentrywithdate}[3]{
-	\begin{tabular}{@{} p{\entrytitlewidthwithdate} p{\entrydatewidth} @{}}
+	\begin{tabu*}{@{} L{\entrytitlewidthwithdate} R{\entrydatewidth} @{}}
 		{\fontsize{14pt}{17pt}\selectfont #1} & #2 \\
-		\multicolumn{2}{p{\entrywidth}}{#3}
-	\end{tabular}
+		\multicolumn{2}{L{\entrywidth}}{#3}
+	\end{tabu*}
 }
 \newcommand{\makeentrywithoutdate}[2]{
-	\begin{tabular}{@{} p{\entrywidth} @{}}
+	\begin{tabu*}{@{} L{\entrywidth} @{}}
 		{\fontsize{14pt}{17pt}\selectfont #1} \\
 		#2
-	\end{tabular}
+	\end{tabu*}
 }
 %%%%%%%%%%%%%%%%%%%%
 
@@ -119,32 +125,34 @@
 \begin{document}
 
 % Create a table to align all the entry titles with the content
-\begin{tabular}{@{} p{\subjectwidth} p{\entrywidth} @{}}
-	%%%% CONTACT INFO %%%%
-	& \makeheader \\
+\begin{frame}[fragile]
+	\begin{tabu*}{@{} R{\subjectwidth} L{\entrywidth} @{}}
+		%%%% CONTACT INFO %%%%
+		& \makeheader \\
 
-	%%%% EDUCATION %%%%
-	\makesubjecttitle{EDUCATION}
-	&
-	\begin{tabular}{@{} l @{}}
-		\makeentrywithdate{\school}{\schoolyears}{\schooldescription}
-	\end{tabular} \\
+		%%%% EDUCATION %%%%
+		\makesubjecttitle{EDUCATION}
+		&
+		\begin{tabu*}{@{} l @{}}
+			\makeentrywithdate{\school}{\schoolyears}{\schooldescription}
+		\end{tabu*} \\
 
-	%%%% WORK %%%%
-	\makesubjecttitle{WORK}
-	&
-	\begin{tabular}{@{} l @{}}
-		\makeentrywithdate{\xuworktitle}{\xuworkdate}{\xuworkdescription} \\
-		\makeentrywithdate{\conworktitle}{\conworkdate}{\conworkdescription}
-	\end{tabular} \\
+		%%%% WORK %%%%
+		\makesubjecttitle{WORK}
+		&
+		\begin{tabu*}{@{} l @{}}
+			\makeentrywithdate{\xuworktitle}{\xuworkdate}{\xuworkdescription} \\
+			\makeentrywithdate{\conworktitle}{\conworkdate}{\conworkdescription}
+		\end{tabu*} \\
 
-	%%%% EXTRA CURRICULAR %%%%
-	\makesubjecttitle{EXTRA CURRICULAR}
-	&
-	\begin{tabular}{@{} l @{}}
-		\makeentrywithdate{\carextratitle}{\carextradate}{\carextradescription} \\
-		\makeentrywithdate{\presextratitle}{\presextradate}{\presextradescription} \\
-		\makeentrywithdate{\ultiextratitle}{\ultiextradate}{\ultiextradescription} \\
-	\end{tabular}
-\end{tabular}
+		%%%% EXTRA CURRICULAR %%%%
+		\makesubjecttitle{EXTRA CURRICULAR}
+		&
+		\begin{tabu*}{@{} l @{}}
+			\makeentrywithdate{\carextratitle}{\carextradate}{\carextradescription} \\
+			\makeentrywithdate{\presextratitle}{\presextradate}{\presextradescription} \\
+			\makeentrywithdate{\ultiextratitle}{\ultiextradate}{\ultiextradescription} \\
+		\end{tabu*}
+	\end{tabu*}
+\end{frame}
 \end{document}
